@@ -3,7 +3,10 @@ package br.com.unifil.mvc.controller.crud;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import br.com.unifil.mvc.model.User;
 
@@ -39,6 +42,26 @@ public class CRUDUser {
 		
 		int n_rows = stmt.executeUpdate();
 		return n_rows > 0;
+	}
+	
+	public ArrayList<User> listAll() throws SQLException {
+		String query = "SELECT * FROM USER";
+		
+		Statement stmt = this.connection.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		
+		ArrayList<User> result = new ArrayList<User>();
+		
+		while(rs.next()) {
+			User tmp = new User();
+			tmp.setIdUser(rs.getInt("USER_ID"));
+			tmp.setNameUser(rs.getString("USER_NAME"));
+			tmp.setPasswordUser(rs.getString("USER_PASSWORD"));
+			tmp.setFullnameUser(rs.getString("USER_FULLNAME"));
+			tmp.setEmailUser(rs.getString("USER_EMAIL"));
+			result.add(tmp);
+		}
+		return result;
 	}
 	
 }
