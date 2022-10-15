@@ -6,4 +6,5 @@
  *
  */
 module ExemploBanco {
+	requires java.sql;
 }
