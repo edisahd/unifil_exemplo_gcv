@@ -81,4 +81,18 @@ public class CRUDUser {
 		return tmp;
 	}
 	
+	public boolean update(User user) throws SQLException {
+		String query = "UPDATE USER SET USER_NAME = ?, USER_PASSWORD = ?, USER_FULLNAME = ?, USER_EMAIL = ? WHERE USER_ID = ?";
+		
+		PreparedStatement stmt = this.connection.prepareStatement(query);
+		stmt.setString(1, user.getNameUser());
+		stmt.setString(2, user.getPasswordUser());
+		stmt.setString(3, user.getFullnameUser());
+		stmt.setString(4, user.getEmailUser());
+		stmt.setInt(5, user.getIdUser());
+		
+		int n_rows = stmt.executeUpdate();
+		return n_rows > 0;
+	}
+	
 }

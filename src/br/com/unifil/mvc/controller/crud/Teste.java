@@ -28,7 +28,9 @@ public class Teste {
 			//}
 			
 			User u = crud.findById(1);
-			System.out.printf("%d: %s\n", u.getIdUser(), u.getFullnameUser());
+			u.setPasswordUser("123546");
+			
+			System.out.println(crud.update(u));
 			
 			crud.close();
 		} catch (SQLException e) {
