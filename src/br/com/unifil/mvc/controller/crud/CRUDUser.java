@@ -64,4 +64,21 @@ public class CRUDUser {
 		return result;
 	}
 	
+	public User findById(int id) throws SQLException {
+		String query = "SELECT * FROM USER WHERE USER_ID = ?";
+		
+		PreparedStatement stmt = this.connection.prepareStatement(query);
+		stmt.setInt(1, id);
+		ResultSet rs = stmt.executeQuery();
+		rs.next();
+		
+		User tmp = new User();
+		tmp.setIdUser(rs.getInt("USER_ID"));
+		tmp.setNameUser(rs.getString("USER_NAME"));
+		tmp.setPasswordUser(rs.getString("USER_PASSWORD"));
+		tmp.setFullnameUser(rs.getString("USER_FULLNAME"));
+		tmp.setEmailUser(rs.getString("USER_EMAIL"));
+		return tmp;
+	}
+	
 }

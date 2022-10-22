@@ -22,10 +22,13 @@ public class Teste {
 			System.out.println(crud.open());
 //			System.out.println(crud.create(u));
 			
-			ArrayList<User> res = crud.listAll();
-			for(User u : res) {
-				System.out.println(u.getFullnameUser());
-			}
+			//ArrayList<User> res = crud.listAll();
+			//for(User u : res) {
+			//	System.out.printf("%d: %s\n", u.getIdUser(), u.getFullnameUser());
+			//}
+			
+			User u = crud.findById(1);
+			System.out.printf("%d: %s\n", u.getIdUser(), u.getFullnameUser());
 			
 			crud.close();
 		} catch (SQLException e) {
